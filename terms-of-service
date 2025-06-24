@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - UB Bot</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #5865F2;
+      --primary-dark: #4752C4;
+      --secondary: #57F287;
+      --background: #0D1117;
+      --surface: #161B22;
+      --surface-hover: #21262D;
+      --text: #F0F6FC;
+      --text-muted: #8B949E;
+      --border: #30363D;
+      --gradient: linear-gradient(135deg, #5865F2 0%, #57F287 100%);
+      --shadow: 0 8px 32px rgba(88, 101, 242, 0.12);
+      --shadow-hover: 0 16px 64px rgba(88, 101, 242, 0.24);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Background Effects */
+    .bg-effects {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #5865F2 0%, transparent 70%);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, #57F287 0%, transparent 70%);
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(20px, -20px) rotate(90deg); }
+      50% { transform: translate(-10px, 20px) rotate(180deg); }
+      75% { transform: translate(-20px, -10px) rotate(270deg); }
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(13, 17, 23, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .header.scrolled {
+      background: rgba(13, 17, 23, 0.95);
+      box-shadow: var(--shadow);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .btn-invite {
+      background: var(--gradient);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-invite:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Page Content */
+    .page-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 2rem 4rem;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-section {
+      margin-bottom: 3rem;
+    }
+
+    .page-section h2 {
+      color: var(--text);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .page-section p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .page-section ul, .page-section ol {
+      color: var(--text-muted);
+      margin: 1rem 0 1rem 2rem;
+      line-height: 1.7;
+    }
+
+    .page-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .page-section a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .page-section a:hover {
+      text-decoration: underline;
+    }
+
+    .page-meta {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--background);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem 1rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      color: var(--text);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-section p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        flex-direction: column;
+        padding: 1rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-effects">
+  <div class="gradient-orb orb-1"></div>
+  <div class="gradient-orb orb-2"></div>
+</div>
+
+<header class="header" id="header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🎮</div>
+      UB Bot
+    </a>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="index.html#features" class="nav-link">Features</a></li>
+      <li><a href="index.html#commands" class="nav-link">Commands</a></li>
+      <li><a href="index.html#testimonials" class="nav-link">Reviews</a></li>
+      <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+    </ul>
+    <a href="#" class="btn-invite">
+      <i class="fas fa-plus"></i>
+      Add to Discord
+    </a>
+    <button class="mobile-menu-btn" id="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+</header>
+
+<main class="page-content">
+  <h1 class="page-title">Terms of Service</h1>
+
+  <section class="page-section">
+    <h2>Introduction</h2>
+    <p>
+      Last Updated: June 24, 2025
+    </p>
+    <p>
+      Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the UB Bot Discord bot, website, or related services (collectively, the "Service") operated by UB Bot ("us", "we", or "our").
+    </p>
+    <p>
+      Your access to and use of the Service is conditioned upon your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who wish to access or use the Service.
+    </p>
+    <p>
+      By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you do not have permission to access the Service.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Communications</h2>
+    <p>
+      By creating an account or using our Service, you agree to receive communications from us, which may include service announcements, updates, and promotional messages. You can opt out of non-essential communications, but will still receive important service-related messages.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Content</h2>
+    <p>
+      Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material ("Content"). You are responsible for all Content that you upload, post, transmit, or otherwise make available via the Service.
+    </p>
+    <p>
+      By posting Content on or through the Service, you represent and warrant that:
+    </p>
+    <ul>
+      <li>You own the Content posted by you or have the right to use it and grant us the rights and license as provided in these Terms.</li>
+      <li>The posting of your Content on or through the Service does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person or entity.</li>
+    </ul>
+    <p>
+      We reserve the right to terminate the account of any user found to be infringing on a copyright.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Acceptable Use</h2>
+    <p>
+      You may use our Service only for lawful purposes and in accordance with these Terms. You agree not to use the Service:
+    </p>
+    <ul>
+      <li>In any way that violates any applicable national, international, or local law or regulation.</li>
+      <li>For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way.</li>
+      <li>To transmit, or procure the sending of, any advertising or promotional material, including any "junk mail," "chain letter," "spam," or any other similar solicitation.</li>
+      <li>To impersonate or attempt to impersonate UB Bot, a UB Bot employee, another user, or any other person or entity.</li>
+      <li>To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Service, or which, as determined by us, may harm UB Bot or users of the Service or expose them to liability.</li>
+      <li>To attempt to circumvent any filtering, security measures, rate limits, or other features designed to protect the Service, its users, or third parties.</li>
+    </ul>
+  </section>
+
+  <section class="page-section">
+    <h2>Discord Terms</h2>
+    <p>
+      As our Service operates primarily through Discord, you must also comply with Discord's Terms of Service and Community Guidelines. Any violation of Discord's terms may result in termination of your access to our Service.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Service Changes and Availability</h2>
+    <p>
+      UB Bot reserves the right to modify, suspend, or discontinue the Service, temporarily or permanently, with or without notice and without liability to you.
+    </p>
+    <p>
+      We do not guarantee that the Service will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Service, resulting in interruptions, delays, or errors. We reserve the right to change, revise, update, suspend, discontinue, or otherwise modify the Service at any time without notice to you.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Accounts</h2>
+    <p>
+      When you create an account with us or use our Service through Discord, you guarantee that the information you provide us is accurate, complete, and current at all times. Inaccurate, incomplete, or obsolete information may result in the immediate termination of your account on the Service.
+    </p>
+    <p>
+      You are responsible for maintaining the confidentiality of your account and password, including but not limited to the restriction of access to your computer and/or account. You agree to accept responsibility for any and all activities or actions that occur under your account and/or password.
+    </p>
+    <p>
+      You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Intellectual Property</h2>
+    <p>
+      The Service and its original content, features, and functionality are and will remain the exclusive property of UB Bot and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of UB Bot.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Links To Other Web Sites</h2>
+    <p>
+      Our Service may contain links to third-party websites or services that are not owned or controlled by UB Bot.
+    </p>
+    <p>
+      UB Bot has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third-party websites or services. You further acknowledge and agree that UB Bot shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods, or services available on or through any such websites or services.
+    </p>
+    <p>
+      We strongly advise you to read the terms and conditions and privacy policies of any third-party websites or services that you visit.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Termination</h2>
+    <p>
+      We may terminate or suspend your account and bar access to the Service immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever and without limitation, including but not limited to a breach of the Terms.
+    </p>
+    <p>
+      If you wish to terminate your account, you may simply discontinue using the Service or contact us to request account deletion.
+    </p>
+    <p>
+      All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Disclaimer</h2>
+    <p>
+      Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.
+    </p>
+    <p>
+      UB Bot, its subsidiaries, affiliates, and its licensors do not warrant that:
+    </p>
+    <ul>
+      <li>The Service will function uninterrupted, secure or available at any particular time or location;</li>
+      <li>Any errors or defects will be corrected;</li>
+      <li>The Service is free of viruses or other harmful components;</li>
+      <li>The results of using the Service will meet your requirements.</li>
+    </ul>
+  </section>
+
+  <section class="page-section">
+    <h2>Limitation of Liability</h2>
+    <p>
+      In no event shall UB Bot, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
+    </p>
+    <ul>
+      <li>Your access to or use of or inability to access or use the Service;</li>
+      <li>Any conduct or content of any third party on the Service;</li>
+      <li>Any content obtained from the Service; and</li>
+      <li>Unauthorized access, use or alteration of your transmissions or content,</li>
+    </ul>
+    <p>
+      Whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Governing Law</h2>
+    <p>
+      These Terms shall be governed and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.
+    </p>
+    <p>
+      Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Changes to Terms</h2>
+    <p>
+      We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+    </p>
+    <p>
+      By continuing to access or use our Service after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use the Service.
+    </p>
+  </section>
+
+  <section class="page-section">
+    <h2>Contact Us</h2>
+    <p>
+      If you have any questions about these Terms, please contact us at terms@ubbot.gg or through our Discord support server.
+    </p>
+  </section>
+
+  <div class="page-meta">
+    <p>Last updated: June 24, 2025</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <a href="index.html" class="logo" style="margin-bottom: 1rem;">
+        <div class="logo-icon">🎮</div>
+        UB Bot
+      </a>
+      <p>The ultimate Discord bot for managing your Ultimate Battlegrounds community.</p>
+      <p>&copy; 2025 UB Bot. All rights reserved.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#commands">Commands</a></li>
+        <li><a href="index.html#testimonials">Reviews</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <ul class="footer-links">
+        <li><a href="#">Support Server</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Tutorials</a></li>
+        <li><a href="#">Updates</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <ul class="footer-links">
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">DMCA</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for Ultimate Battlegrounds players</p>
+  </div>
+</footer>
+
+<script>
+  // Header Scroll Effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile Menu
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const navMenu = document.getElementById('nav-menu');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    const isOpen = navMenu.classList.contains('active');
+    mobileMenuBtn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+  });
+</script>
+</body>
+</html>
